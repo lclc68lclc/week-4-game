@@ -3,31 +3,62 @@ $(document).ready(function() {
     var wins = 0;
     var losses = 0;
     var score = 0;
+    var blueOne = Math.floor(Math.random() * 11) + 1;
+    var greenOne = Math.floor(Math.random() * 11) + 1;
+    var orangeOne = Math.floor(Math.random() * 11) + 1;
+    var goldOne = Math.floor(Math.random() * 11) + 1;
     var computerRandom = Math.floor(Math.random() * (120 - 19 + 1) + 19);
-    var crystalRandom = Math.floor(Math.random() * 12) + 1;
+
+    function winDetermined() {
+        if (computerRandom === score) {
+            wins++;
+            $("#win").html(wins);
+            reset();
+        } else if (score > computerRandom) {
+            losses++;
+            $("#loss").html(losses);
+            reset();
+        }
+    }
+
+    function reset() {
+        score = 0;
+        blueOne = Math.floor(Math.random() * 11) + 1;
+        greenOne = Math.floor(Math.random() * 11) + 1;
+        orangeOne = Math.floor(Math.random() * 11) + 1;
+        goldOne = Math.floor(Math.random() * 11) + 1;
+        computerRandom = Math.floor(Math.random() * (120 - 19 + 1) + 19);
+        $(".score").empty();
+
+    }
+
 
     $("#1").on("click", function() {
-        var oneRandom = crystalRandom;
-        console.log(oneRandom);
+        score += goldOne;
+        console.log(score);
+        $(".score").html("<h1>" + score + "</h1>");
+        winDetermined();
     });
 
     $("#2").on("click", function() {
-        var twoRandom = crystalRandom;
-        console.log(twoRandom);
+        score += orangeOne;
+        console.log(score);
+        $(".score").html("<h1>" + score + "</h1>");
+        winDetermined();
     });
 
     $("#3").on("click", function() {
-        var threeRandom = crystalRandom;
-        console.log(threeRandom);
+        score += greenOne;
+        $(".score").html("<h1>" + score + "</h1>");
+        winDetermined();
     });
 
     $("#4").on("click", function() {
-        var fourRandom = crystalRandom;
-        console.log(fourRandom);
+        score += blueOne;
+        $(".score").html("<h1>" + score + "</h1>");
+        winDetermined();
     });
 
     $("#computer-guess").html("<h2>" + computerRandom + "</h2>");
 
-    $(".score").html(score += oneRandom);
-
-})
+});
