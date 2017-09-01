@@ -29,6 +29,7 @@ $(document).ready(function() {
         goldOne = Math.floor(Math.random() * 11) + 1;
         computerRandom = Math.floor(Math.random() * (120 - 19 + 1) + 19);
         $(".score").empty();
+        $("#computer-guess").html("<h2>" + computerRandom + "</h2>");
 
     }
 
